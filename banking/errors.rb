@@ -28,4 +28,13 @@ module Banking
       super(message || "Insufficient funds: tried to withdraw #{amount}, balance is #{balance}")
     end
   end
+
+  class InvalidMoneyError < Error
+    attr_reader :value
+
+    def initialize(value, message = nil)
+      @value = value
+      super(message || "Invalid money value: #{value.inspect}")
+    end
+  end
 end
