@@ -41,9 +41,10 @@ module Banking
       validate_amount!(amount)
 
       @balance += amount
-      record(Transaction.deposit(amount: amount, balance_after: @balance, at: @clock.now))
+      tx = Transaction.deposit(amount: amount, balance_after: @balance, at: @clock.now)
+      record(tx)
 
-      @balance
+      tx
     end
 
     def withdraw(amount)
@@ -51,9 +52,10 @@ module Banking
       raise InsufficientFundsError.new(amount, @balance) if amount > @balance
 
       @balance -= amount
-      record(Transaction.withdraw(amount: amount, balance_after: @balance, at: @clock.now))
+      tx = Transaction.withdraw(amount: amount, balance_after: @balance, at: @clock.now)
+      record(tx)
 
-      @balance
+      tx
     end
 
     private

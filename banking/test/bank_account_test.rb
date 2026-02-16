@@ -25,7 +25,12 @@ class BankAccountTest < Minitest::Test
     fixed_time = Time.parse("2026-02-16 12:00:00 UTC")
     acc = Banking::BankAccount.new(10, clock: FakeClock.new(fixed_time))
 
-    acc.deposit(5)
+    tx = acc.deposit(5)
+
+    assert_equal :deposit, tx.type
+    assert_equal 5, tx.amount
+    assert_equal 15, tx.balance_after
+    assert_equal fixed_time, tx.at
 
     assert_equal 15, acc.balance
     txs = acc.history
@@ -42,8 +47,13 @@ class BankAccountTest < Minitest::Test
     fixed_time = Time.parse("2026-02-16 12:00:00 UTC")
     acc = Banking::BankAccount.new(10, clock: FakeClock.new(fixed_time))
 
-    acc.withdraw(3)
+    tx = acc.withdraw(3)
 
+    assert_equal :withdraw, tx.type
+    assert_equal 3, tx.amount
+    assert_equal 7, tx.balance_after
+    assert_equal fixed_time, tx.at
+    
     assert_equal 7, acc.balance
     txs = acc.history
     assert_equal 1, txs.size

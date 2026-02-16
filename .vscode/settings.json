@@ -38,7 +38,7 @@
   },
   "editor.stickyScroll.enabled": false,
   "editor.codeLens": false,
-  "editor.hover.enabled": false,
+  "editor.hover.enabled": "off",
   "editor.guides.indentation": false,
   "editor.renderLineHighlight": "gutter",
   "editor.renderLineHighlightOnlyWhenFocus": true,
