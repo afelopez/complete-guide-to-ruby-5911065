@@ -4,8 +4,8 @@
 # Reverses direction after halfway point
 
 pattern = "|/|="
-lines = 20
-width = 10
+lines = 16
+width = 16
 halfway = (lines / 2.0).floor
 
 pattern_array = (pattern*width).split('')

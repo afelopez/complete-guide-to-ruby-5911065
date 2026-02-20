@@ -2,8 +2,8 @@
 
 require 'date'
 
-days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-
+days = Date::DAYNAMES
+puts days
 def ordinalize(number)
 	num_string = number.to_s
   last_two_digits = num_string[-2,2]
