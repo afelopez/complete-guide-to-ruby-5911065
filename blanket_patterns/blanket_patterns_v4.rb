@@ -3,30 +3,22 @@
 # Changes characters at halfway point
 # Reverses direction after halfway point
 
-colors = "=|/|/|=|/|"
+pattern = "|/|="
 lines = 20
+width = 10
 halfway = (lines / 2.0).floor
 
-colors_array = colors.split('')
+pattern_array = (pattern*width).split('')
+reversed_pattern = pattern_array.map{|p| p == '/' ? '\\' : p }.reverse
 
-# output first half
-1.upto(halfway) do |n|
-  first = colors_array.shift
-  colors_array << first
-  puts colors_array.join
-end
-
-# Swap characters and output the result
-colors_array.each_index do |i|
-  if colors_array[i] == '/'
-    colors_array[i] = '\\'
+(1...lines-1).each do  |n|
+  first = pattern_array.shift
+  last = reversed_pattern.pop
+  pattern_array << first
+  reversed_pattern.unshift(last)
+  if n < halfway
+    puts pattern_array.join + reversed_pattern.join
+  else
+    puts reversed_pattern.join + pattern_array.join 
   end
-end
-puts colors_array.join
-
-# output second half
-halfway.upto(lines) do |n|
-  last = colors_array.pop
-  colors_array.unshift(last)
-  puts colors_array.join
 end

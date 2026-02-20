@@ -1,5 +1,6 @@
 count = 1
 
+# boolean form
 case
 when count == 0
   puts "nobody"
@@ -11,6 +12,8 @@ else
   puts "many people"
 end
 
+
+# comparation form
 case count
 when 0
   puts "nobody"

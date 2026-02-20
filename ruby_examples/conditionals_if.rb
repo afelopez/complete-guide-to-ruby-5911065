@@ -7,3 +7,6 @@ elsif x >= 20
 else
   puts "Between 10 and 20"
 end
+
+
+y = 10 if x < 20
